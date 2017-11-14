@@ -1,0 +1,19 @@
+<aura:component >
+
+	<aura:attribute name="filterOptions" type="List" default="[]" description="the picklist options" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine wether output or input will be displayed" />
+	
+	<aura:registerEvent name="doneEditingEvent" type="c:YH_Budget_Event" description="event for after done editing - user will click save or cancel" />
+	
+	
+   	<c:YH_MultiPicklist filterOptions="{!v.filterOptions}" />
+	<aura:if isTrue="{!(!v.isEditEnabled)}">
+    	<lightning:button label="{!$Label.c.YH_Budget_Edit}" onclick="{!c.toggleEditMode}" />
+    	
+    	<aura:set attribute="else"> 
+    		<lightning:button label="{!$Label.c.YH_Budget_Save}" onclick="{!c.doneEditing}" name="save" />
+    		<lightning:button label="{!$Label.c.YH_Budget_Cancel}" onclick="{!c.doneEditing}" name="cancel" />
+    	</aura:set>
+    </aura:if>
+   
+</aura:component>

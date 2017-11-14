@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+	<aura:attribute name="action" type="String" description="the action to be taken - add/delete" />
+	<aura:attribute name="rowIndex" type="Integer" description="the index of the row clicked - add after/delete a row" />
+</aura:event>

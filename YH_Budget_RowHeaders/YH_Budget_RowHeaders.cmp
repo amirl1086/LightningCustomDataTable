@@ -1,0 +1,49 @@
+<aura:component >
+
+	<aura:attribute name="budgetItems" type="List" description="the table row budget items" />
+	<aura:attribute name="lastSelectedAction" type="String" default="" description="the last selection of the user, will be used to determine whether to delete/add the row in ease trasition" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine whether output or input will be displayed" />
+	
+	<!-- design attributes -->
+	<aura:attribute name="summaryColumnWidth" type="Integer" description="" />
+	<aura:attribute name="rowHeadersWidth" type="Integer" description="" />
+	
+	<aura:registerEvent name="handleRowsEvent" type="c:YH_Budget_HandleRowsEvent" />
+	
+	<aura:method name="scrollRows" action="{!c.scrollRows}">
+		<aura:attribute name="horizontalScrollIndex" type="Integer" description="the horizontal scroll index of the table body" />
+	</aura:method>
+	
+	
+	<aura:if isTrue="{!v.isEditEnabled}">
+		<div class="first-row-adding-section">
+			<lightning:buttonIcon class="first-row-adding-btn" iconName="utility:add" size="large" onclick="{!c.handleRows}" name="add,-1" />
+		</div>
+	</aura:if>
+	<div class="table-rows" aura:id="table-rows">
+      	<aura:iteration items="{!v.budgetItems}" var="budgetItem" indexVar="index"> 
+      		<div class="row-header-container" style="{!'width:' + (v.rowHeadersWidth + v.summaryColumnWidth) + 'px;'}">
+	      		<div class="{!'row-name-box ' + (budgetItem.isVisible ? '' : 'hide-row-element')}" style="{!'width:' + v.rowHeadersWidth + 'px;'}">
+	      			<aura:if isTrue="{!v.isEditEnabled}">
+	      				<lightning:input type="text" name="budgetItemName" value="{!budgetItem.Name}" aura:id="budgetItemRowHeader" />
+	      				<div class="row-adding-section">
+			      			<lightning:buttonIcon class="row-adding-btn" iconName="utility:add" size="large" onclick="{!c.handleRows}" name="{!'add,' + index}" />
+			      		</div>
+			      		<div class="row-deleting-section">
+			      			<lightning:buttonIcon class="row-deleting-btn" iconName="utility:delete" size="large" onclick="{!c.handleRows}" name="{!'delete,' + index}" />
+			      		</div>
+	      				<aura:set attribute="else">
+	      					<div class="row-name-lbl">{!budgetItem.Name}</div>
+	      				</aura:set>
+	      			</aura:if>
+	      		</div>
+	      		<div class="row-sum-box" style="{!'width:' + v.summaryColumnWidth + 'px;'}">
+	      		
+	      		</div>
+      		</div>
+      	</aura:iteration>
+      		
+      	<div class="table-row-empty" style="{!'width:' + v.rowHeadersWidth + 'px;'}"></div>
+	</div>
+	
+</aura:component>

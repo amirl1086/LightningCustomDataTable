@@ -1,0 +1,55 @@
+<aura:component >
+
+	<aura:attribute name="budgetYears" type="List" description="The table column headers" />
+	<aura:attribute name="filterOptions" type="List" default="[]" description="The picklist options" />
+	<aura:attribute name="headerCellWidth" type="Integer" description="year header cell width - determined by the number of columns selected" />
+	<aura:attribute name="innerCellWidth" type="Integer" description="year inner header cell width - determined by the number of columns selected" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine whether output or input will be displayed" />
+	
+	<aura:registerEvent name="handleYearsEvent" type="c:YH_Budget_HandleYearsEvent" />
+	<aura:registerEvent name="removeBudgetYear" type="c:YH_Budget_Event" />
+	
+	<aura:method name="scrollHeaders" action="{!c.scrollHeaders}">
+		<aura:attribute name="verticalScrollIndex" type="Integer" description="the vertical scroll index of the table body" />
+	</aura:method>
+	
+	
+	<div class="table-headers" aura:id="table-headers">
+       	<div class="table-header-row">
+       		<aura:iteration items="{!v.budgetYears}" var="year" indexVar="yearIndex">
+            	<div class="{!'year-columns-wrap' + (year.isHidden ? ' hidden-year' : '')}" 
+            		style="{!'width:' + v.headerCellWidth + 'px;'}" aura:id="year-columns-wrap">
+            		<!-- delete buttons in the first and last columns -->
+            		<aura:if isTrue="{!v.isEditEnabled}">
+	           			<aura:if isTrue="{!yearIndex == 1}">
+	           				<lightning:buttonIcon class="column-prepend-btn" iconName="utility:add" size="small" onclick="{!c.handleYears}" name="unshift" />
+	           				<aura:if isTrue="{!v.budgetYears.length > 3}">
+				      			<lightning:buttonIcon class="delete-year-btn left" iconName="utility:delete" size="medium" onclick="{!c.handleYears}" name="{!'splice,' + yearIndex}" />
+				      		</aura:if>
+			      		</aura:if>
+			      		<aura:if isTrue="{!yearIndex == (v.budgetYears.length - 2)}">
+			      				<lightning:buttonIcon class="column-append-btn" iconName="utility:add" size="small" onclick="{!c.handleYears}" name="push" />
+			      			<aura:if isTrue="{!v.budgetYears.length > 3}">
+				      			<lightning:buttonIcon class="delete-year-btn right" iconName="utility:delete" size="medium" onclick="{!c.handleYears}" name="{!'splice,' + yearIndex}" />
+				      		</aura:if>
+			      		</aura:if>
+			      	</aura:if>
+            		
+            		<div class="header-year-box">{!year.Name}</div>
+            		<div class="header-options-box">
+	            		<aura:iteration items="{!v.filterOptions}" var="filterColumn" indexVar="index">
+		        			<div class="{!'header-option' + (!filterColumn.selected ? ' hide-year-element' : '') + (index != v.filterOptions.length - 1 ? ' right-border' : '')}" 
+		        				style="{!'width:' + (filterColumn.selected ? v.innerCellWidth : '0') + '%;'}">
+			        				<aura:if isTrue="{!filterColumn.selected}">
+			        					{!filterColumn.label} 
+			        				</aura:if>
+		        			</div>
+		        		</aura:iteration>
+	            	</div>
+            	</div>
+            </aura:iteration>
+            <div class="year-columns-empty" aura:id="table-end-element"></div>
+    	</div>
+	</div>
+	
+</aura:component>

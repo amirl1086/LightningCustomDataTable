@@ -1,0 +1,8 @@
+
+<design:component >
+	
+	<design:attribute name="rowHeadersWidth" label="Row Headers Width" description="Change left side column width in pixels"/>
+	<design:attribute name="summaryColumnWidth" label="Summary Column Width" description="Change summaries column width in pixels"/>
+	<design:attribute name="innerCellWidth" label="Inner Cell Width" description="Change inner cells width in pixels"/>
+	
+</design:component>

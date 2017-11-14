@@ -1,0 +1,48 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" controller="YH_Budget_CTRL">
+	
+	<!-- Add a toast error handler -->
+    <c:YH_ErrorHandler aura:id="errorHandler" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!-- table related attributes -->
+	<aura:attribute name="recordId" type="String" description="current record id, from force:hasRecordId" />
+	<aura:attribute name="tableData" type="Object" description="budget table years, items and year-items (cells)" />
+	<aura:attribute name="clonedTableData" type="Object" description="save the last table data - after edit cancel is enabled" />
+	<aura:attribute name="budgetYears" type="List" default="[]" description="the table columns" />
+	<aura:attribute name="budgetItems" type="List" default="[]" description="the table rows" />
+	<aura:attribute name="filterOptions" type="List" default="[]" description="the picklist options" />
+	<aura:attribute name="isEditEnabled" type="Boolean" default="false" description="will determine wether output or input will be displayed" />
+	
+	<!-- design attributes -->
+	<aura:attribute name="rowHeadersWidth" type="Integer" description="Change left side column width" />
+	<aura:attribute name="summaryColumnWidth" type="Integer" description="Change summaries column width" />
+	<aura:attribute name="innerCellWidth" type="Integer" description="Change inner cells width" />
+	
+	<aura:handler name="doneEditingEvent" event="c:YH_Budget_Event" action="{!c.doneEditing}" />
+	
+	<lightning:card iconName="custom:custom17" title="{!$Label.c.YH_Budget_Header}">
+		
+		<aura:set attribute="actions">
+			<c:YH_Budget_HeaderActions filterOptions="{!v.filterOptions}" 
+				isEditEnabled="{!v.isEditEnabled}" />
+		</aura:set> 
+		
+       	<c:YH_Budget_Table aura:id="budgetTableCmp"
+       		budgetId="{!v.tableData.budget.Id}"
+       		budgetItems="{!v.budgetItems}"
+       		budgetYears="{!v.budgetYears}"
+    		isEditEnabled="{!v.isEditEnabled}"
+    		filterOptions="{!v.filterOptions}"
+    		rowHeadersWidth="{!v.rowHeadersWidth}"
+    		summaryColumnWidth="{!v.summaryColumnWidth}"
+    		innerCellWidth="{!v.innerCellWidth}" />
+        
+        <aura:set attribute="footer">
+            <lightning:button label="History" onclick="{!c.openPicture}" />
+        </aura:set>
+
+       	
+	</lightning:card>
+	
+</aura:component>

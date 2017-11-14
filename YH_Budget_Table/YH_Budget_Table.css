@@ -1,0 +1,24 @@
+.THIS.budget-table-wrap {
+    border-radius: .25rem;
+    border: 2px solid rgb(221, 219, 218);
+    transition: width 1.5s ease;
+    position: relative;
+  	height: 350px;
+  	max-width: 100%;
+}
+
+.THIS .budget-table-body {
+    overflow: auto;
+    min-height: 289px;
+    transition: width 1.5s ease;
+}
+
+.THIS .hide-element {
+	height: 0 !important;
+    visibility: hidden;
+    border: none;
+}
+
+.THIS .table-headers-wrapper {
+	position: relative;
+}

@@ -1,0 +1,12 @@
+<aura:component >
+	<!-- this table section will listen to the mouse scroller event and run scrollTable function on each scroll -->
+	<div aura:id="budget-table-body" class="budget-table-body" onscroll="{!c.scrollTable}" style="{! 'max-height:' + v.tableMaxHeight + 'px;'}">
+		<aura:iteration items="{!v.budgetItems}" var="budgetItem">
+			<c:YH_Budget_TableRow rowItem="{!budgetItem}"
+				isEditEnabled="{!v.isEditEnabled}" 
+				selectedFilters="{!v.selectedFilters}"
+				cellWidth="{!v.cellWidth}"
+				cellInnerWidth="{!v.cellInnerWidth}" />
+		</aura:iteration>
+	</div>
+</aura:component>

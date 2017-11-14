@@ -1,0 +1,27 @@
+<aura:component >
+
+	<aura:attribute name="cellWidth" type="Integer" description="the specific cell width" />
+	<aura:attribute name="isDataDisplayed" type="Boolean" description="the parameter that will display/hide the data" />
+	<aura:attribute name="dataToDisplay" type="Integer" description="the raw data that will be displayed" />
+	<aura:attribute name="cellName" type="String" description="name for future development purposes" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine wether output or input will be displayed" />
+	
+	<aura:if isTrue="{!v.isEditEnabled}">
+		<div class="{!'cell-data-edit' + (!v.isDataDisplayed ? ' hide-inner-cell' : '')}" style="{!'width:' + v.cellWidth  + '%;'}">
+			<aura:if isTrue="{!v.isDataDisplayed}"> 
+				<lightning:input type="number" name="{!v.cellName}" value="{!v.dataToDisplay}" />
+			</aura:if>
+		</div>
+		
+		<aura:set attribute="else">
+			<div class="{!'cell-data-display' + (!v.isDataDisplayed ? ' hide-inner-cell' : '')}" style="{!'width:' + v.cellWidth + '%;'}">
+				<aura:if isTrue="{!v.isDataDisplayed}">
+					<lightning:formattedNumber value="{!v.dataToDisplay}" style="decimal" />
+					<!-- <lightning:formattedNumber value="{!v.dataToDisplay}" /> -->
+				</aura:if>
+			</div>
+		</aura:set>
+		
+	</aura:if>
+	
+</aura:component>

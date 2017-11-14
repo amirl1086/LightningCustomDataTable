@@ -1,0 +1,100 @@
+.THIS.table-headers {
+    opacity: 1;
+    overflow: hidden;
+	position: relative;
+    height: 58px;
+}
+
+.THIS .table-header-row {
+	display: inline-flex;
+}
+
+.THIS .year-columns-wrap {
+	position: relative;
+ 	float: left;
+    height: 58px;
+    opacity: 1;
+    border-left: token(tableGreyBorder);
+    transition: width 1.5s ease, opacity 1s linear;
+}
+
+.THIS .header-year-box {
+	text-align: center;
+	height: 50%;
+	padding-top: 4px;
+	position: relative;
+	background-color: token(colorHeaderBackgraund);
+	color: token(fontColorWhite);
+}
+
+.THIS .delete-year-btn {
+	position: absolute;
+    bottom: 30px;
+    z-index: 10;
+    border: none;
+    color: token(colorGreyIcon);
+}
+
+.THIS .delete-year-btn.left, .THIS .delete-year-btn.right {
+	top: -1px;
+}
+.THIS .delete-year-btn.left {
+	right: 0%;
+}
+
+.THIS .delete-year-btn.right {
+	left: 0%;
+}
+
+.THIS .header-options-box { 
+	height: 50%;
+}
+
+.THIS .header-option {
+	float: left;
+    text-align: center;
+    height: 100%;
+    opacity: 1;
+    border-top: 2px solid rgb(221, 219, 218);
+    transition: width 1.5s ease, opacity 1s linear;
+    padding-top: 3px;
+    color: token(fontColorInnerCellHeader);
+    text-transform: token(fontCapitalLetters);
+    font-size: token(fontSizeSmall);
+    padding-top: 5px;
+}
+
+.THIS .year-columns-empty {
+	width: 150px;
+    float: left;
+    height: 58px;
+}
+
+.THIS .column-append-btn {
+	position: absolute;
+    top: 2px;
+    right: 0%;
+    border: none;
+    color: token(colorGreyIcon);
+}
+
+.THIS .column-prepend-btn {
+	position: absolute;
+    top: 2px;
+    left: 0%;
+}
+
+.THIS .column-prepend-btn, .THIS .column-append-btn {
+	z-index: 1;
+}
+
+.THIS .hide-year-element, .THIS .hidden-year {
+	opacity: 0;
+	height: 100% !important;
+	width: 0 !important;
+	border: none;
+}
+
+.THIS .right-border {
+	border-right: token(tableGreyBorder);
+}

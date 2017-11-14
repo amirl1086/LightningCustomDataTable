@@ -1,0 +1,22 @@
+<aura:component >
+	
+	<aura:attribute name="rowItem" type="Object" />
+	<aura:attribute name="currencyCode" type="String" />
+	<aura:attribute name="isEditEnabled" type="Boolean" />
+	<aura:attribute name="cellWidth" type="Integer" />
+	<aura:attribute name="innerCellWidth" type="Integer" />
+	<aura:attribute name="selectedFilters" type="Object" />
+	
+	<aura:registerEvent name="toggleBudgetItems" type="c:YH_Budget_Event" />
+	
+	<div class="{!'table-data-row' + (!v.rowItem.isVisible ? ' hide-data-row-element' : '')}" aura:id="table-data-row">
+		<aura:iteration items="{!v.rowItem.data}" var="cellItem" indexVar="index">
+			<c:YH_Budget_TableCell cellData="{!cellItem}"
+				isEditEnabled="{!v.isEditEnabled}"
+				selectedFilters="{!v.selectedFilters}"
+				cellWidth="{!v.cellWidth}" 
+				innerCellWidth="{!v.innerCellWidth}" />
+		</aura:iteration>
+	</div>
+	
+</aura:component>

@@ -1,0 +1,70 @@
+<aura:component >
+	
+	<!-- data -->
+	<aura:attribute name="budgetId" type="String" description="budget id of the current grant" />
+	<aura:attribute name="budgetYears" type="List" default="[]" description="the table columns" />
+	<aura:attribute name="budgetItems" type="List" default="[]" description="the table rows" />
+	<aura:attribute name="filterOptions" type="List" default="[]" description="the picklist options" />
+	<aura:attribute name="selectedFilters" type="Object" default="{}" description="the picklist options" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine wether output or input will be displayed" />
+	
+	<!-- design attributes -->
+	<aura:attribute name="innerCellWidth" type="Integer" description="" />
+	<aura:attribute name="summaryColumnWidth" type="Integer" description="" />
+	<aura:attribute name="rowHeadersWidth" type="Integer" description="" />
+	
+	<!-- table dimensions -->
+	<aura:attribute name="cellWidth" type="Integer" description="table cell width - determined by the number of columns selected" />
+	<aura:attribute name="cellHeight" type="Integer" default="58" description="table cell height - doesn't change" />
+	<aura:attribute name="innerCellPercentage" type="Integer" description="percentage calculation for avoiding border displaying issues" />
+	<!-- max and min height - always keep an 18 pixels difference (for bottom scroller) -->
+	<aura:attribute name="tableMinHeight" default="290" type="Integer" description="table minimum height, for bottom scroller support - doesn't change" />
+	<aura:attribute name="tableMaxHeight" default="308" type="Integer" description="table maximum height, for bottom scroller support - doesn't change" />
+	<aura:attribute name="tableHeight" type="Integer" description="table height" />
+	<aura:attribute name="tableWidth" type="Integer" description="table width" />
+	
+	<!-- headers and rows component references, will set on afterRender() function -->
+	<aura:attribute name="columnHeadersCmp" type="Object" />
+	<aura:attribute name="columnRowsCmp" type="Object" />
+	
+	<!-- events handlers -->
+	<aura:handler name="change" value="{!v.filterOptions}" action="{!c.setTableSize}"/>
+	
+	<aura:handler name="handleYearsEvent" event="c:YH_Budget_HandleYearsEvent" action="{!c.handleYears}" />
+	<aura:handler name="handleRowsEvent" event="c:YH_Budget_HandleRowsEvent" action="{!c.handleRows}" />
+	
+	<aura:handler name="toggleBudgetItems" event="c:YH_Budget_Event" action="{!c.toggleBudgetItems}" />
+	<aura:handler name="removeBudgetYear" event="c:YH_Budget_Event" action="{!c.removeYear}" />
+	
+	
+	<div class="budget-table-wrap" style="{!'width:' + v.tableWidth + 'px;'}">
+		<!-- table headers row -->
+		<div class="table-headers-wrapper" style="{!'left:' + (v.rowHeadersWidth + v.summaryColumnWidth) + 'px;' + 'width:' + 'calc(100% - ' + (v.summaryColumnWidth + v.rowHeadersWidth) + 'px);'}">
+			<c:YH_Budget_ColumnHeaders aura:id="columnHeadersCmp"
+				budgetYears="{!v.budgetYears}" 
+		   		filterOptions="{!v.filterOptions}"
+		   		headerCellWidth="{!v.cellWidth}"
+		   		innerCellWidth="{!v.innerCellPercentage}"
+		   		isEditEnabled="{!v.isEditEnabled}" />
+	   	</div>
+	   	
+	   	<!-- table first column rows -->
+	   	<c:YH_Budget_RowHeaders aura:id="rowHeadersCmp"
+	   		budgetItems="{!v.budgetItems}"
+	   		isEditEnabled="{!v.isEditEnabled}" 
+	   		rowHeadersWidth="{!v.rowHeadersWidth}" 
+	   		summaryColumnWidth="{!v.summaryColumnWidth}" />
+	   	
+	   	<!-- this table section will listen to the mouse scroller event and run scrollTable function on each scroll -->
+		<div aura:id="budget-table-body" class="budget-table-body" onscroll="{!c.scrollTable}" style="{!'max-height:' + v.tableHeight + 'px;' + 'width:' + 'calc(100% - ' + (v.summaryColumnWidth + v.rowHeadersWidth) + 'px);'}">
+			<aura:iteration items="{!v.budgetItems}" var="budgetItem">
+				<c:YH_Budget_TableRow rowItem="{!budgetItem}"
+					isEditEnabled="{!v.isEditEnabled}" 
+					selectedFilters="{!v.selectedFilters}"
+					cellWidth="{!v.cellWidth}"
+					innerCellWidth="{!v.innerCellPercentage}" />
+			</aura:iteration>
+		</div>
+	</div>
+	
+</aura:component>

@@ -1,0 +1,46 @@
+.THIS.table-data-cell {
+	display: flex;
+	height: 58px;
+	opacity: 1;
+	transition: width 1.5s ease, height 1.5s ease, opacity 1s linear;
+}
+
+.THIS .cell-data-display, .THIS .cell-data-edit {
+    text-align: center;
+    border: 1px solid rgb(221, 219, 218);
+    opacity: 1;
+    transition: width 1.5s ease, height 1.5s ease, opacity 1s linear;
+    float: left;
+}
+
+.THIS .cell-data-display {
+	padding-top: 19px;
+}
+
+.THIS .slds-grow {
+	bottom: 8px;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.THIS .slds-input::-webkit-inner-spin-button, .THIS .slds-input::-webkit-outer-spin-button {
+	-webkit-appearance: none; 
+  	margin: 0;
+}
+
+.THIS .slds-input {
+	text-align: center;
+	padding: 1px;
+}
+
+.THIS .hide-inner-cell {
+	opacity: 0;
+	width: 0 !important;
+	border: none;
+}
+
+.THIS.hidden-cell {
+	opacity: 0;
+	width: 0 !important;
+}

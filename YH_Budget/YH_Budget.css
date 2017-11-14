@@ -1,0 +1,23 @@
+.THIS .slds-card__header {
+	margin-bottom: 38px;
+}
+
+.THIS .slds-no-flex {
+	margin-right: 43px;
+}
+
+.THIS .slds-picklist {
+	margin-right: 23px;
+}
+
+
+.THIS .slds-card__body {
+	padding: 10px 20px !important;
+}
+
+.THIS .budget-table {
+	width: calc(100% - 152px);
+    overflow: scroll;
+    height: calc(50vh - 77px);
+    min-height: 174px;
+}

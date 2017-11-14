@@ -1,0 +1,50 @@
+<aura:component >
+	
+	<aura:attribute name="cellData" type="Object" description="The raw data that will be displayed in the cell" />
+	<aura:attribute name="isEditEnabled" type="Boolean" description="will determine wether output or input will be displayed" />
+	<aura:attribute name="cellWidth" type="Integer" description="the total cell width" /> 
+	<aura:attribute name="innerCellWidth" type="Integer" description="the inner cells width" />
+	<aura:attribute name="selectedFilters" type="Object" description="the columns names to be displayed" /> 
+	
+	<!-- temp -->
+	<aura:attribute name="tempProject" type="Integer" default="10000" /> 
+	<!-- temp -->
+	
+	
+ 	<div class="{!'table-data-cell' + (v.cellData.isHidden ? ' hidden-cell' : '')}" style="{!'width:' + v.cellWidth + 'px;'}">
+		<aura:if isTrue="{!v.isEditEnabled}">
+			<c:YH_Budget_TableCellData cellWidth="{!v.selectedFilters.project ? v.innerCellWidth : 0}" 
+				isDataDisplayed="{!v.selectedFilters.project}" 
+				dataToDisplay="{!v.tempProject}" 
+				cellName="project"
+				isEditEnabled="{!v.isEditEnabled}" />
+				
+			<c:YH_Budget_TableCellData cellWidth="{!v.selectedFilters.yh ? v.innerCellWidth : 0}" 
+				isDataDisplayed="{!v.selectedFilters.yh}" 
+				dataToDisplay="{!v.cellData.Amount__c}" 
+				cellName="yh"
+				isEditEnabled="{!v.isEditEnabled}" />
+			
+			<aura:set attribute="else">
+				<c:YH_Budget_TableCellData cellWidth="{!v.selectedFilters.project ? v.innerCellWidth : 0}" 
+					isDataDisplayed="{!v.selectedFilters.project}" 
+					dataToDisplay="{!v.tempProject}" 
+					isEditEnabled="{!v.isEditEnabled}" />
+					
+				<c:YH_Budget_TableCellData cellWidth="{!v.selectedFilters.yh ? v.innerCellWidth : 0}" 
+					isDataDisplayed="{!v.selectedFilters.yh}" 
+					dataToDisplay="{!v.cellData.Amount__c}" 
+					isEditEnabled="{!v.isEditEnabled}" />
+					
+			</aura:set>
+			
+		</aura:if>
+		
+		<c:YH_Budget_TableCellData cellWidth="{!v.selectedFilters.paid ? v.innerCellWidth : 0}" 
+			isDataDisplayed="{!v.selectedFilters.paid}" 
+			dataToDisplay="{!v.cellData.payment}" 
+			isEditEnabled="false" />
+		
+	</div>
+	
+</aura:component>

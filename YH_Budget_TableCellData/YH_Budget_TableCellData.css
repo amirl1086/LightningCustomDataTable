@@ -1,0 +1,19 @@
+.THIS .hide-inner-cell {
+	opacity: 0;
+	width: 0 !important;
+	height: 0 !important;
+	border: none;
+}
+
+.THIS .cell-data-edit, .THIS .cell-data-display {
+	text-align: center;
+    border: 1px solid rgb(221, 219, 218);
+    opacity: 1;
+    transition: width 1.5s ease, height 1.5s ease, opacity 1s linear;
+    float: left;
+    height: 58px;
+}
+
+.THIS .cell-data-display {
+    padding-top: 19px;
+}

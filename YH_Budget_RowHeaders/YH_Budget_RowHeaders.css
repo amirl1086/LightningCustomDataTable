@@ -1,0 +1,90 @@
+.THIS.table-rows {
+	clear: both;
+    float: left;
+    overflow: hidden;
+    height: 289px;
+    min-height: 174px; 
+    transition: height 1.5s ease;
+}
+
+.THIS .row-name-box {
+	position: relative;
+    height: 58px;
+    opacity: 1;
+    border: 1px solid rgb(221, 219, 218);
+   	transition: height 1.5s ease, opacity 1s linear;
+}
+
+.THIS .table-row-empty {
+	float: left;
+	height: 58px;
+}
+
+.THIS .row-adding-section, .THIS.first-row-adding-section {
+	position: relative;
+}
+
+.THIS .row-adding-btn, .THIS .first-row-adding-btn {
+	position: absolute;
+    opacity: 0.3;
+    z-index: 10;
+    width: 22px;
+    height: 22px;
+}
+
+.THIS .row-adding-btn {
+    left: 41%;
+    bottom: -16px;
+}
+
+.THIS .first-row-adding-btn {
+    left: 62px;
+    top: 47px;
+    bottom: -16px;
+}
+
+.THIS .row-adding-btn:hover, .THIS .first-row-adding-btn:hover {
+	opacity: 1;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.THIS .row-deleting-section {
+	position: relative;
+}
+
+.THIS .row-deleting-btn {
+	position: absolute;
+    right: 5px;
+   	bottom: 8px;
+    border: none;
+}
+
+.THIS .hide-row-element {
+	height: 0% !important;
+    width: 100% !important;
+    opacity: 0;
+    border: none;
+}
+
+.THIS .row-name-lbl {
+	position: relative;
+    left: 15px;
+    top: 18px;
+}
+
+.THIS .slds-grow {
+	width: 70%;
+    margin: 0 33px 0 4px;
+    position: relative;
+    bottom: 8px;
+}
+
+.THIS .row-sum-box {
+	height: 58px;
+	border: 1px solid rgb(221, 219, 218);
+}
+
+.THIS .row-header-container {
+	display: flex;
+}

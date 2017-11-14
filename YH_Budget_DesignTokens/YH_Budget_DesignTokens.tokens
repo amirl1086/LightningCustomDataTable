@@ -1,0 +1,19 @@
+<aura:tokens >
+
+	<!-- colors tokens -->
+	<aura:token name="colorHeaderBackgraund" value="#3b4e73"/>
+	<aura:token name="fontColorWhite" value="#ffffff"/>
+	<aura:token name="fontColorInnerCellHeader" value="#7e8088"/>
+	<aura:token name="colorGreyIcon" value="#dbe4e5"/>	
+	
+	<!-- dimensions tokens -->
+	<aura:token name="rowHeadersWidth" value="250px" />
+	
+	<!-- font sizes and design -->
+	<aura:token name="fontSizeSmall" value="10px" />
+	<aura:token name="fontCapitalLetters" value="uppercase" />
+	
+	<!-- borders -->
+	<aura:token name="tableGreyBorder" value="1px solid rgb(221, 219, 218)" />
+	
+</aura:tokens>

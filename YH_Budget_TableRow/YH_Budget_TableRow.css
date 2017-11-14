@@ -1,0 +1,13 @@
+.THIS.table-data-row {
+	display: inline-flex;
+	float: left;
+	opacity: 1;
+	transition: height 1.5s ease, opacity 1s linear;
+	height: 58px;
+	overflow: hidden;
+}
+
+.THIS.hide-data-row-element {
+	opacity: 0;
+	height: 0 !important;
+}
